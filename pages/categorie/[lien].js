@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import { PostCard, Categories, Loader } from '../../components';
+import { PostCard, Categories, Loader } from '../../Components';
 
 //les requetes
 import { getCategories, getPostsFromCategory } from '../../services';
