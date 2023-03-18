@@ -31,7 +31,7 @@ const PostWidget = ({lien, categories}) => {
     <div className="bg-amber-500 shadow-lg rounded-lg p-8 pb-12 mb-8">
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">
         {//s'il y a un lien ne paramètre 
-        lien ? 'Related Posts' : 'Derniers articles'}  
+        lien ? 'Articles similaires' : 'Derniers articles'}  
       </h3>
       {
         relatedPosts.map((post) => 

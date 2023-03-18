@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'; //Pour afficher la date de création du Post
+import Share from './Share';
 
 
 const PostDetail = ({post}) => {
@@ -84,6 +85,8 @@ const PostDetail = ({post}) => {
             const children = typeObj.children.map((item, itemindex) => getContentFragment(itemindex, item.text, item));
             return getContentFragment(index, children, typeObj, typeObj.type);
           })}
+          
+          <Share titrepost={post.titre}/>
 
         </div>
       </div>

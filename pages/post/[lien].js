@@ -1,14 +1,7 @@
 import React from 'react';
 import {getPostDetails, getPosts} from '../../services'; //pour les requetse
 
-import {PostWidget, Categories} from '../../Components'; // Pour les composantes 
-import Auteur from '../../Components/Auteur';
-import PostDetail from '../../Components/PostDetail';
-import FormulaireCommentaire from '../../Components/FormulaireCommentaire';
-import Commentaires from '../../Components/Commentaires';
-
-
-import Loader from '../../components/Loader';
+import {PostWidget, Categories, Auteur, PostDetail, FormulaireCommentaire, Commentaires, Loader} from '../../Components'; // Pour les composantes 
 import { useRouter } from 'next/router';
 
 

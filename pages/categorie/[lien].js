@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import { PostCard, Categories, Loader } from '../../components';
+import { PostCard, Categories, Loader } from '../../Components';
 
 //les requetes
 import { getCategories, getPostsFromCategory } from '../../services';
@@ -15,7 +15,7 @@ const PageCategorie  = ({posts}) => {
     const  router = useRouter();
     //Si la page est en cours de chargement
     if (router.isFallback) {
-      <Loader/>; // renvoyer la page Loader à l'utilisateur 
+      return <Loader/>; // renvoyer la page Loader à l'utilisateur 
     }
   return (
     <div className="container mx-auto px-10 mb-8">
