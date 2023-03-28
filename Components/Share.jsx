@@ -7,7 +7,7 @@ const Share = ({titrepost}) => {
     const [selectedNetwork, setSelectedNetwork] = useState('');
 
     //const shareUrl = window.location.href;
-    const titre = 'Titre de mon article';
+    const titre = titrepost;
   
     //Fonction qui se déclenche lors en cliquant sur le bouton
     const handleClick = (selectedNetwork) => {
@@ -23,7 +23,7 @@ const Share = ({titrepost}) => {
               window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(titre)}`, '_blank');
               break;
             case 'linkedin':
-              window.open(`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(titre)}`, '_blank');
+              window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(titre)}`, '_blank');
               break;
             case 'messenger':
               window.open(`fb-messenger://share/?link=${encodeURIComponent(window.location.href)}`, '_blank');
@@ -46,6 +46,7 @@ const Share = ({titrepost}) => {
     //Le rendu de ce composant est un bouton icone 
     return (
     <div>
+      <h6 className="mb-1 text-l font-semibold">Partager sur:</h6>      
       <button onClick={() => handleClick('facebook')}>
         <FaFacebookSquare className="w-8 h-8" style={{ color: '#1877f2' }} />
       </button>

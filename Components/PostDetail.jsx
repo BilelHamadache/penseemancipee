@@ -3,6 +3,7 @@ import moment from 'moment'; //Pour afficher la date de création du Post
 import Share from './Share';
 
 
+
 const PostDetail = ({post}) => {
 
   //Cette fonction pour afficher 'render' le contenu de l'article selon son propre format
@@ -52,6 +53,7 @@ const PostDetail = ({post}) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
+
       <div className="relative overflow-hidden shadow-md mb-6">
           <img 
           src={post.image.url} 

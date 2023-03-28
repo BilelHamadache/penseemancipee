@@ -9,7 +9,7 @@ export const getPosts = async () =>
 {
     const query = gql`
     query MyQuery {
-        postsConnection {
+        postsConnection(orderBy:createdAt_DESC) {
           edges {
             node {
               auteur {
@@ -73,7 +73,10 @@ export const getFeaturedPosts = async () => {
 export const getPostsFromCategory = async (lien) => {
   const query = gql`
     query GetPostsFromCategory($lien: String!) {
-      postsConnection(where: {categories_some: {lien: $lien}}) {
+      postsConnection(
+        where: {categories_some: {lien: $lien}}
+        orderBy: createdAt_DESC
+        ) {
         edges {
           cursor
           node {
