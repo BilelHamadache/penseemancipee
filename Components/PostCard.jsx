@@ -3,6 +3,8 @@ import React from 'react';
 import moment from 'moment'; //Pour afficher la date de création du Post
 import Link from 'next/link';
 
+import { FaEye, GrView } from 'react-icons/fa';
+
 //const post =[];
 // post= post.node
 const PostCard = ({post}) => {
@@ -43,6 +45,12 @@ const PostCard = ({post}) => {
             <span>
               {moment(post.createdAt).format('DD MMM YYYY')}
             </span>
+
+            <span className="ml-2 text-gray-800">
+              <FaEye className="inline mr-2" />
+               {post.vues} Vues
+           </span>
+            
         </div>
       </div>
 

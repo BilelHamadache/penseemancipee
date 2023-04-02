@@ -21,6 +21,7 @@ export const getPosts = async () =>
                 }
               }
               createdAt
+              vues
               lien
               titre
               extrait
@@ -89,6 +90,7 @@ export const getPostsFromCategory = async (lien) => {
               }
             }
             createdAt
+            vues
             lien
             titre
             extrait
@@ -125,6 +127,7 @@ export const getPostDetails = async (lien) =>{
                 }
               }
               createdAt
+              vues
               lien
               titre
               extrait
@@ -239,4 +242,18 @@ export const getComments = async(lien) =>{
     }`;
     const result = await request(graphqlAPI, query, {lien});
     return result.commentaires;
+};
+
+//Une fonction pour modifier le nbr de vues d'un article
+export const SendUpdatedPostViews = async(lien, vues) =>{
+console.log(vues)
+  const result = await fetch('/api/views', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({lien, vues}),
+  });
+
+  return result.json();
 };

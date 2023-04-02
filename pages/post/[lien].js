@@ -4,7 +4,6 @@ import {getPostDetails, getPosts} from '../../services'; //pour les requetse
 import {PostWidget, Categories, Auteur, PostDetail, FormulaireCommentaire, Commentaires, Loader} from '../../Components'; // Pour les composantes 
 import { useRouter } from 'next/router';
 
-import { NextSeo } from 'next-seo';
 
 const PageArticle = ({post}) => {
     console.log(post)
@@ -13,28 +12,11 @@ const PageArticle = ({post}) => {
     if (router.isFallback) {
       return <Loader />;
     }
-
-    const seo = {
-      title: post.titre,
-      openGraph: {
-        title: post.titre,
-        description: 'Une courte description de mon contenu',
-        images: [
-          {
-            url: post.image.url,
-          },
-        ],
-        site_name: 'pensée-émancipée',
-      },
-    };
-   
     
 
   return (
   
     <div className="container mx-auto px-10 mb-8">
-                        <NextSeo {...seo} />
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="col-span-1 lg:col-span-8">
                 <PostDetail post = {post} />
