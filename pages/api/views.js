@@ -63,7 +63,7 @@ const UPDATE_POST_VIEWS_MUTATION = gql`
     updatePost(
       where: { lien: $lien }
       data: { vues: $vues}
-    ) {id} 
+    ) {lien} 
     publishPost(where : {lien:$lien}) {
             titre
         }

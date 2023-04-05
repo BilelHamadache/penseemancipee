@@ -248,11 +248,11 @@ export const getComments = async(lien) =>{
 export const SendUpdatedPostViews = async(lien, vues) =>{
 console.log(vues)
   const result = await fetch('/api/views', {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({lien, vues}),
+    body: JSON.stringify({lien, vues: vues+1}),
   });
 
   return result.json();

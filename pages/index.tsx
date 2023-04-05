@@ -59,14 +59,18 @@ const Home: NextPage <{ posts: any[]; showFeaturedPosts: boolean }> = ({posts, s
 // Reécupérer des données sur Next.js avce la fonction getStaticProps
 //La fonction getStaticProps renvoie un objet qui contient une propriété props
 // Elle permet de charger les données à partir d'une API lors du chargement d'unepage coté serveur
-export async function getStaticProps ()
+
+//export async function getStaticProps ()
+
+export async function getServerSideProps()
 {
   //Récupérer les Posts sinon rien
   const posts =  (await getPosts())|| [];
   return { 
         //Props utilisés par des frameworks basés sur React (Next.js) pour charger les données coté serveur dans un composant
     props:{posts},
-    revalidate: 10
+    //revalidate: 10
+
   };
 }
 
