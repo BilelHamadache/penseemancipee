@@ -62,14 +62,13 @@ const Home: NextPage <{ posts: any[]; showFeaturedPosts: boolean }> = ({posts, s
 
 //export async function getStaticProps ()
 
-export async function getServerSideProps()
+export async function getStaticProps()
 {
   //Récupérer les Posts sinon rien
   const posts =  (await getPosts())|| [];
   return { 
         //Props utilisés par des frameworks basés sur React (Next.js) pour charger les données coté serveur dans un composant
     props:{posts},
-    //revalidate: 10
 
   };
 }

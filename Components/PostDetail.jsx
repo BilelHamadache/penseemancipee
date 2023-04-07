@@ -67,9 +67,10 @@ const PostDetail = ({post}) => {
   };//Fin de la fonction
 
 
-  
-
-
+  //  le hook useEffect  pour appeler la fonction updatePostViews lorsque le composant PostDetail est monté
+useEffect(() => {
+  SendUpdatedPostViews(post.lien, post.vues);
+});
 
 
   return (

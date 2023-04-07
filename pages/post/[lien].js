@@ -13,10 +13,7 @@ const PageArticle = ({post}) => {
       return <Loader />;
     }
     
-//  le hook useEffect  pour appeler la fonction updatePostViews lorsque le composant PostDetail est monté
-useEffect(() => {
-  SendUpdatedPostViews(post.lien, post.vues);
-}, [post.vues]);
+
 
   return (
   
@@ -50,7 +47,7 @@ export async function getStaticProps ({params})
       //Récupérer le Post à afficher en détail 
   return {//Props utilisés par des frameworks basés sur React (Next.js) pour charger les données coté serveur dans un composant
     props:{post: data},
-    revalidate: 1
+
   };
 }
 
@@ -58,7 +55,7 @@ export async function getStaticPaths ()
 {
     const posts = await getPosts();
     const paths = posts.map(({node:{lien}}) => ({params:{lien}}));
-    return{paths,fallback:true,};
+    return{paths,fallback:true,}; // true pour activer le rendu côté serveur pour les pages non générées statiquement
 }
 
 

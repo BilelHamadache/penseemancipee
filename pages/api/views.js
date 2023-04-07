@@ -59,10 +59,10 @@ export default async function Views (req, res){
 
   //Créer la requete 'mutation' pour modifier le champs vue dans le modèle POST dans graphCMS dashboard
 const UPDATE_POST_VIEWS_MUTATION = gql`
-    mutation updatePostVues($lien: String!, $vues: Int!) {
+    mutation updatePostVues($lien: String!, $updatedvues: Int!) {
     updatePost(
       where: { lien: $lien }
-      data: { vues: $vues}
+      data: { vues: $updatedvues}
     ) {lien} 
     publishPost(where : {lien:$lien}) {
             titre

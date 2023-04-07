@@ -43,7 +43,6 @@ export async function getStaticProps({ params }) {
     const posts = await getPostsFromCategory(params.lien);
     return {
       props: { posts }, // posts c'est le parametre dans PageCategorie
-      revalidate: 1
     };
   }
   
