@@ -141,7 +141,6 @@ const Header = ({setShowFeaturedPosts}) => {
                 </div>
             </nav>
         </div>
-        <HorizontalScrollingCategories/>
 
     </div>
   )
