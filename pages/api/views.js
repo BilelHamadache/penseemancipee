@@ -57,6 +57,8 @@ export default async function Views (req, res){
     },
   });
 
+  console.log('Mutation Request');
+
   //Créer la requete 'mutation' pour modifier le champs vue dans le modèle POST dans graphCMS dashboard
 const UPDATE_POST_VIEWS_MUTATION = gql`
     mutation updatePostVues($lien: String!, $updatedvues: Int!) {
@@ -72,11 +74,12 @@ const UPDATE_POST_VIEWS_MUTATION = gql`
   //Exécuter la requete en paramètre avce un autre paramètre = data
   try
   {
+    console.log('Run API');
   const result = await graphQLClient.request(UPDATE_POST_VIEWS_MUTATION, req.body);
   return res.status(200).send(result);
   }
   catch(error)
-  {console.log(error);
+  {console.log('error API');
   return res.status(200).send(500);
   }
 

@@ -245,19 +245,16 @@ export const getComments = async(lien) =>{
 };
 
 //Une fonction pour modifier le nbr de vues d'un article
-export const SendUpdatedPostViews = async(lien, vues) =>{
-console.log(vues)
-const {value: objlien} = lien;
-const {value: objvues} = vues+1;
-const lien_vues_obj = {objlien, objvues};
-
-  const result = await fetch('/api/views', {
-    method: 'POST',
+export const SendUpdatedPostViews = async(lien, updatedvues) =>{
+console.log('Debut de fonction SendUpdatedPostViews');
+  const result = await fetch('/api/Views', {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(lien_vues_obj),
+    body: JSON.stringify({lien, updatedvues}),
   });
+  console.log('Fin de fonction SendUpdatedPostViews');
 
   return result.json();
 };

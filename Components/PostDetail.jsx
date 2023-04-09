@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import moment from 'moment'; //Pour afficher la date de création du Post
 import Share from './Share';
 
@@ -6,7 +6,10 @@ import { NextSeo } from 'next-seo';
 
 import { FaEye } from 'react-icons/fa';
 
+//Traiter la mise à jour des vues
 import { SendUpdatedPostViews } from '../services'; // Pour modifier le nbr de vues d'un Post
+import { useRouter } from 'next/router';
+
 
 const PostDetail = ({post}) => {
 
@@ -68,9 +71,34 @@ const PostDetail = ({post}) => {
 
 
   //  le hook useEffect  pour appeler la fonction updatePostViews lorsque le composant PostDetail est monté
-useEffect(() => {
-  SendUpdatedPostViews(post.lien, post.vues);
-});
+/*
+  useEffect(() => {
+  SendUpdatedPostViews(post.lien);
+}), [];
+*/
+
+  const router = useRouter();
+  const [isFetching, setIsFetching] = useState(false);
+
+  const handlePostViewUpdate = async () => {
+    console.log('La fonction handlePostViewUpdate--------')
+    setIsFetching(true); // Mettre à jour l'état de récupération des données
+    try {
+      const updatedviews = post.vues+1; 
+      await SendUpdatedPostViews(post.lien, updatedviews); 
+      await router.refresh(); // Actualiser la route pour récupérer les données mises à jour et les rendre côté serveur
+    } catch (error) {
+      console.log('erreur dans la fonction handlePostViewUpdate--------')
+    } finally {
+      setIsFetching(false); // Mettre à jour l'état de récupération des données à la fin de la requête
+    }
+  };
+
+
+  useEffect(() => {
+    // Appeler handlePostViewUpdate une seule fois au montage du composant
+    handlePostViewUpdate();
+  }, []);
 
 
   return (

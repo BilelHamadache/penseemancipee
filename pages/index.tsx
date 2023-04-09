@@ -1,5 +1,5 @@
 import { Props } from 'html-react-parser/lib/attributes-to-props';
-import type { NextPage } from 'next';
+import type { NextPage} from 'next';
 
 import Head from 'next/head';
 import {HorizontalScrollingPosts, HorizontalScrollingCategories} from '../sections';
@@ -62,7 +62,7 @@ const Home: NextPage <{ posts: any[]; showFeaturedPosts: boolean }> = ({posts, s
 
 //export async function getStaticProps ()
 
-export async function getStaticProps()
+export async function getServerSideProps()
 {
   //Récupérer les Posts sinon rien
   const posts =  (await getPosts())|| [];
@@ -71,6 +71,9 @@ export async function getStaticProps()
     props:{posts},
 
   };
+  
 }
+
+
 
 export default Home
