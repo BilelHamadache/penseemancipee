@@ -247,7 +247,7 @@ export const getComments = async(lien) =>{
 //Une fonction pour modifier le nbr de vues d'un article
 export const SendUpdatedPostViews = async(lien, updatedvues) =>{
 console.log('Debut de fonction SendUpdatedPostViews');
-  const result = await fetch('/api/Views', {
+  const result = await fetch('/api/Views/', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
