@@ -47,6 +47,7 @@ export async function getStaticProps ({params})
       //Récupérer le Post à afficher en détail 
   return {//Props utilisés par des frameworks basés sur React (Next.js) pour charger les données coté serveur dans un composant
     props:{post: data},
+    revalidate: 10,
 
   };
 }
