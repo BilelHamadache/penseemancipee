@@ -1,5 +1,7 @@
 import { request, gql } from 'graphql-request'; //graph-request is graphql client 
 
+import Views from '../pages/api/Views';
+
 //Créer un API
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT; 
 
@@ -247,8 +249,8 @@ export const getComments = async(lien) =>{
 //Une fonction pour modifier le nbr de vues d'un article
 export const SendUpdatedPostViews = async(lien, updatedvues) =>{
 console.log('Debut de fonction SendUpdatedPostViews');
-  const result = await fetch('/api/Views/', {
-    method: 'PUT',
+  const result = await fetch('/api/Views', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },

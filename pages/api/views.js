@@ -50,6 +50,8 @@ const graphcmsToken = process.env.GRAPHCMS_TOKEN;
 export default async function Views (req, res){
 
   //console.log(graphcmsToken);
+  console.log('Mutation Début de l API Views');
+
 
   const graphQLClient = new GraphQLClient((graphqlAPI), {
     headers: {
