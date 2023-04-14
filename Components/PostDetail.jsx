@@ -88,10 +88,11 @@ const PostDetail = ({post}) => {
     try {
       //const updatedviews = post.vues+1; 
 
-      const currentViews = await getVues(post.lien);
+      let currentViews = await getVues(post.lien);
+      currentViews= currentViews+1;
       setViews(currentViews);
 
-      await SendUpdatedPostViews(post.lien, currentViews+1); 
+      await SendUpdatedPostViews(post.lien, currentViews); 
       await router.refresh(); // Actualiser la route pour récupérer les données mises à jour et les rendre côté serveur
     } catch (error) {
       console.log('erreur dans la fonction handlePostViewUpdate--------')
@@ -140,7 +141,7 @@ const PostDetail = ({post}) => {
             </span>
             <span className="ml-4 text-gray-800">
               <FaEye className="inline mr-2" />
-               {post.vues} Vues
+               {updatedviews} Vues
            </span>
         </div>
         </div>

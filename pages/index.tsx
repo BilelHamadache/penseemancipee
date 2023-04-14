@@ -22,15 +22,15 @@ const Home: NextPage <{ posts: any[]; showFeaturedPosts: boolean }> = ({posts, s
 // Déclarer un état local pour les données des posts
 const [postsData, setPostsData] = useState(posts);
 // Utiliser useEffect pour appeler getPosts lorsque les données des posts sont mises à jour
+const fetchPosts = async () => {
+  try {
+    const response = await getPosts();
+    setPostsData(response); // Mettre à jour les données des posts dans l'état local
+  } catch (error) {
+    console.error('Failed to fetch posts:', error);
+  }
+};
 useEffect(() => {
-  const fetchPosts = async () => {
-    try {
-      const response = await getPosts();
-      setPostsData(response); // Mettre à jour les données des posts dans l'état local
-    } catch (error) {
-      console.error('Failed to fetch posts:', error);
-    }
-  };
   fetchPosts();
 }, []); // Utiliser un tableau vide en tant que dépendances pour s'assurer que cela ne se produit qu'une seule fois au montage
 
