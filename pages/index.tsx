@@ -1,5 +1,6 @@
 import { Props } from 'html-react-parser/lib/attributes-to-props';
 import type { NextPage} from 'next';
+import { useState, useEffect} from 'react';
 
 import Head from 'next/head';
 import {HorizontalScrollingPosts, HorizontalScrollingCategories} from '../sections';
@@ -17,6 +18,23 @@ import { getRecentPost } from '../services';
 
 // defining the shape of the props object that we expect to receive. It is an array of Posts with any type.
 const Home: NextPage <{ posts: any[]; showFeaturedPosts: boolean }> = ({posts, showFeaturedPosts}) => {
+
+// Déclarer un état local pour les données des posts
+const [postsData, setPostsData] = useState(posts);
+// Utiliser useEffect pour appeler getPosts lorsque les données des posts sont mises à jour
+useEffect(() => {
+  const fetchPosts = async () => {
+    try {
+      const response = await getPosts();
+      setPostsData(response); // Mettre à jour les données des posts dans l'état local
+    } catch (error) {
+      console.error('Failed to fetch posts:', error);
+    }
+  };
+  fetchPosts();
+}, []); // Utiliser un tableau vide en tant que dépendances pour s'assurer que cela ne se produit qu'une seule fois au montage
+
+
   return (
     //className vient du Tailwind css
     <div className="container mx-auto px-10 mb-8">  

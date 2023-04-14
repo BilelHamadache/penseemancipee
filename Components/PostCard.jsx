@@ -13,10 +13,11 @@ import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from 'next/dist/shared/lib/
 // post= post.node
 const PostCard = ({post}) => {
   console.log(post);
-   
+  
+   /*
   //const router = useRouter();
   const [isFetching, setIsFetching] = useState(false);
-  const [vues, setVues] = useState(0); // Créer un état pour stocker le nombre de vues
+  const [vues, setVues] = useState(post.vues); // Créer un état pour stocker le nombre de vues
 
   const fetchVues = async () => {
     setIsFetching(true); // Mettre à jour l'état de récupération des données
@@ -31,10 +32,9 @@ const PostCard = ({post}) => {
       setIsFetching(false); // Mettre à jour l'état de récupération des données à la fin de la requête
     }
   };
-  useEffect(() => {
-    fetchVues();
-  }, []);
   
+  fetchVues();
+  */
   
   return (
     <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
@@ -75,7 +75,7 @@ const PostCard = ({post}) => {
 
             <span className="ml-2 text-gray-800">
               <FaEye className="inline mr-2" />
-               {vues} Vues
+               {post.vues} Vues
            </span>
             
         </div>
