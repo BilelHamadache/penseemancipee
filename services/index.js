@@ -260,3 +260,16 @@ console.log('Debut de fonction SendUpdatedPostViews');
 
   return result.json();
 };
+
+
+//Une fonction pour récupérer le nombre d vues d'un post:
+export const getVues = async(lien) =>{
+  const query = gql`
+  query get_vues_from_post($lien: String!) {
+    post(where: {lien: $lien}){
+    vues
+  }
+  }`;
+  const result = await request(graphqlAPI, query, {lien});
+  return result.post.vues;
+};

@@ -7,7 +7,7 @@ import { NextSeo } from 'next-seo';
 import { FaEye } from 'react-icons/fa';
 
 //Traiter la mise à jour des vues
-import { SendUpdatedPostViews } from '../services'; // Pour modifier le nbr de vues d'un Post
+import { SendUpdatedPostViews, getVues } from '../services'; // Pour modifier le nbr de vues d'un Post
 import { useRouter } from 'next/router';
 
 
@@ -79,13 +79,19 @@ const PostDetail = ({post}) => {
 
   const router = useRouter();
   const [isFetching, setIsFetching] = useState(false);
+  const [updatedviews, setViews ] = useState(0); 
+
 
   const handlePostViewUpdate = async () => {
     console.log('La fonction handlePostViewUpdate--------')
     setIsFetching(true); // Mettre à jour l'état de récupération des données
     try {
-      const updatedviews = post.vues+1; 
-      await SendUpdatedPostViews(post.lien, updatedviews); 
+      //const updatedviews = post.vues+1; 
+
+      const currentViews = await getVues(post.lien);
+      setViews(currentViews);
+
+      await SendUpdatedPostViews(post.lien, currentViews+1); 
       await router.refresh(); // Actualiser la route pour récupérer les données mises à jour et les rendre côté serveur
     } catch (error) {
       console.log('erreur dans la fonction handlePostViewUpdate--------')

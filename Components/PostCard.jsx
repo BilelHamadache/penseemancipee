@@ -1,14 +1,41 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useRouter } from 'next/router';
 
 import moment from 'moment'; //Pour afficher la date de création du Post
 import Link from 'next/link';
 
+import {getVues } from '../services'; // Pour afficher le nbr de vues modfiés 
+
 import { FaEye, GrView } from 'react-icons/fa';
+import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from 'next/dist/shared/lib/constants';
 
 //const post =[];
 // post= post.node
 const PostCard = ({post}) => {
   console.log(post);
+   
+  //const router = useRouter();
+  const [isFetching, setIsFetching] = useState(false);
+  const [vues, setVues] = useState(0); // Créer un état pour stocker le nombre de vues
+
+  const fetchVues = async () => {
+    setIsFetching(true); // Mettre à jour l'état de récupération des données
+    try {
+      //const updatedviews = post.vues+1; 
+      const vues = await getVues(post.lien);
+      setVues(vues);
+    } catch (error) {
+      console.log('erreur dans la fonction fetchVues--------')
+    }
+    finally {
+      setIsFetching(false); // Mettre à jour l'état de récupération des données à la fin de la requête
+    }
+  };
+  useEffect(() => {
+    fetchVues();
+  }, []);
+  
+  
   return (
     <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md pb-80 mb-6">
@@ -48,7 +75,7 @@ const PostCard = ({post}) => {
 
             <span className="ml-2 text-gray-800">
               <FaEye className="inline mr-2" />
-               {post.vues} Vues
+               {vues} Vues
            </span>
             
         </div>
