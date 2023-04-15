@@ -76,7 +76,7 @@ const Header = ({setShowFeaturedPosts}) => {
                 <div className="container mx-auto px-4 flex justify-between items-center ">
                     <div className="flex items-center">
                         <Link href="/" onClick={() => setShowFeaturedPosts(true)}>
-                            <img class="h-30 w-40" src="/logo6.png" alt="Logo" />
+                            <img className="h-30 w-40" src="/logo6.png" alt="Logo" />
                         </Link>
                     </div>
 

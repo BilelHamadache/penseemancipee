@@ -51,7 +51,7 @@ useEffect(() => {
 
         {/*div pour liste vertivale des PostCards*/}
         <div className='lg:col-span-8 col-span-1'>
-          {postsdata.map((post) => <PostCard post={post.node} key={post.titre}/> )}
+          {postsdata.map((post) => <PostCard post={post.node} key={post.node.lien}/> )}
         </div>
 
         {/*div pour la liste verticale ( à droite) + PostWidget et Catégories (à droite) */}
@@ -78,9 +78,9 @@ useEffect(() => {
 //La fonction getStaticProps renvoie un objet qui contient une propriété props
 // Elle permet de charger les données à partir d'une API lors du chargement d'unepage coté serveur
 
-//export async function getStaticProps ()
 
-export async function getServerSideProps()
+export async function getStaticProps ()
+//export async function getServerSideProps()
 {
   //Récupérer les Posts sinon rien
   const posts =  (await getPosts())|| [];
