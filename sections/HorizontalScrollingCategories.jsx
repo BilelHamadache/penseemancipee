@@ -37,10 +37,8 @@ const HorizontalScrollingCategories = () => {
     const [dataLoaded, setDataLoaded] = useState(false);
 
     useEffect(() => {
-        getCategories().then((result) => {
-            setCategoriesTable(result);
-          setDataLoaded(true); // une variable pour tester s'il y a des catégoires
-        });
+        getCategories().then((result) => {setCategoriesTable(result); setDataLoaded(true); // une variable pour tester s'il y a des catégoires
+        }).catch((error) => {console.error('Failed to fetch categories:', error);});
       }, []);
 
 

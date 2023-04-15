@@ -1,8 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import Link from 'next/link';
-import Categories from './Categories';
 
-import { getCategories } from '../services';
 
 import { HorizontalScrollingCategories } from '../sections';
 
@@ -141,6 +139,8 @@ const Header = ({setShowFeaturedPosts}) => {
                 </div>
             </nav>
         </div>
+
+        <HorizontalScrollingCategories/>
 
     </div>
   )

@@ -20,7 +20,7 @@ import { getRecentPost } from '../services';
 const Home: NextPage <{ posts: any[]; showFeaturedPosts: boolean }> = ({posts, showFeaturedPosts}) => {
 
 // Déclarer un état local pour les données des posts
-const [postsData, setPostsData] = useState(posts);
+const [postsdata, setPostsData] = useState(posts);
 // Utiliser useEffect pour appeler getPosts lorsque les données des posts sont mises à jour
 const fetchPosts = async () => {
   try {
@@ -51,7 +51,7 @@ useEffect(() => {
 
         {/*div pour liste vertivale des PostCards*/}
         <div className='lg:col-span-8 col-span-1'>
-          {posts.map((post) => <PostCard post={post.node} key={post.titre}/> )}
+          {postsdata.map((post) => <PostCard post={post.node} key={post.titre}/> )}
         </div>
 
         {/*div pour la liste verticale ( à droite) + PostWidget et Catégories (à droite) */}

@@ -7,7 +7,17 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(()=> {
-    getCategories().then((result) => setCategories(result));
+    //getCategories().then((result) => setCategories(result));
+
+    const fetchCategories = async () => {
+      try {
+        const result = await getCategories();
+        setCategories(result);
+      } catch (error) {
+        console.error('Failed to fetch categories:', error);
+      }
+    };
+    fetchCategories();
   }, [])
 
   return (
