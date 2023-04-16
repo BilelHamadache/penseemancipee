@@ -87,6 +87,7 @@ export async function getStaticProps ()
   return { 
         //Props utilisés par des frameworks basés sur React (Next.js) pour charger les données coté serveur dans un composant
     props:{posts},
+    revalidate :1,
 
   };
   
