@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect} from 'react';
 
 
 import { PostCard, Categories, Loader } from '../../Components';
@@ -17,11 +18,28 @@ const PageCategorie  = ({posts}) => {
     if (router.isFallback) {
       return <Loader/>; // renvoyer la page Loader à l'utilisateur 
     }
+
+    // Déclarer un état local pour les données des posts
+const [postsdata, setPostsData] = useState(posts);
+// Utiliser useEffect pour appeler getPosts lorsque les données des posts sont mises à jour
+const fetchPosts = async () => {
+  try {
+    const response = await getPostsFromCategory(router.query.lien);
+    setPostsData(response); // Mettre à jour les données des posts dans l'état local
+  } catch (error) {
+    console.error('Failed to fetch posts:', error);
+  }
+};
+useEffect(() => {
+  fetchPosts();
+}, []); // Utiliser un tableau vide en tant que dépendances pour s'assurer que cela ne se produit qu'une seule fois au montage
+
+
   return (
     <div className="container mx-auto px-10 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="col-span-1 lg:col-span-8">
-          {posts.map((post, index) => (
+          {postsdata.map((post, index) => (
             <PostCard key={index} post={post.node} />
           ))}
         </div>
