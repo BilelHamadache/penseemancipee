@@ -11,6 +11,8 @@ import { SendUpdatedPostViews, getVues } from '../services'; // Pour modifier le
 import { useRouter } from 'next/router';
 
 
+
+
 const PostDetail = ({post}) => {
 
   const seo = {
@@ -64,7 +66,19 @@ const PostDetail = ({post}) => {
             src={obj.src}
           />
         );
-      default:
+
+        case 'code-block': // Ajouter un cas pour le bloc de code
+        return  ( <div className="bg-gray-300 p-4 rounded-md">
+          <pre><code key={index}>{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</code></pre>
+          </div>);
+
+      case 'ordered-list-item':
+      return (<li key={index} className="list-decimal ml-8">
+                {modifiedText.map((item, i) => (<React.Fragment key={i}>{item}</React.Fragment>))}
+                </li>
+              );
+      
+        default:
         return modifiedText;
     }
   };//Fin de la fonction
