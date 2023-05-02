@@ -72,12 +72,34 @@ const PostDetail = ({post}) => {
           <pre><code key={index}>{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</code></pre>
           </div>);
 
-      case 'ordered-list-item':
-      return (<li key={index} className="list-decimal ml-8">
+        case 'link':
+        return (<a key={index} href={obj.data.uri}>
+          {modifiedText}
+          </a>);
+
+
+  
+        case 'ordered-list-item':
+        return (<li key={index} className="list-decimal ml-8">
                 {modifiedText.map((item, i) => (<React.Fragment key={i}>{item}</React.Fragment>))}
                 </li>
               );
-      
+        
+        case 'video':
+        return (
+          <div key={index} className="my-4">
+            <iframe
+              width="560"
+              height="315"
+              src={obj.src}
+              title={obj.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        );
+
         default:
         return modifiedText;
     }
@@ -160,12 +182,17 @@ const PostDetail = ({post}) => {
         </div>
         </div>
           <h1 className="mb-8 text-3xl font-semibold">{post.titre}</h1>
-          
+          <div style={{ 
+            WebkitUserSelect: 'none', 
+            MozUserSelect: 'none', 
+            msUserSelect: 'none', 
+            userSelect: 'none' 
+            }}>
           {post.contenu.raw.children.map((typeObj, index) => { // c'est une fonction
             const children = typeObj.children.map((item, itemindex) => getContentFragment(itemindex, item.text, item));
             return getContentFragment(index, children, typeObj, typeObj.type);
           })}
-          
+          </div>
           <Share titrepost={post.titre}/>
 
         </div>
