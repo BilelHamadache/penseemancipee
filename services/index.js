@@ -27,6 +27,7 @@ export const getPosts = async () =>
               lien
               titre
               extrait
+              indexed
               image {
                 url
               }

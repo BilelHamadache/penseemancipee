@@ -30,9 +30,34 @@ const PostDetail = ({post}) => {
     },
   };
 
-  //Cette fonction pour afficher 'render' le contenu de l'article selon son propre format
+  /*
+  function replaceUrls(item, obj) {
+    console.log(obj.type);
+    if (obj.type === "link") {
+      const url = obj.href;
+      //console.log(obj.type);
+      return (<a key={index} href={url} className='text-md text-blue-700'>
+                {url}
+              </a>
+            );
+    }
+  else {return item;}
+  }
+  */
+
+//Cette fonction pour afficher 'render' le contenu de l'article selon son propre format
   const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text; //variable pour stocker text
+
+    //console.log(obj.type);
+    if (obj.type === "link") {
+      const url = obj.href;
+      //console.log(obj.type);
+      return (<a key={index} href={url} className='text-md text-blue-700 hover:underline'>
+                      {url}
+              </a>
+            );
+    }
 
     //Si obj existe on transmet son format
     if (obj) {
@@ -52,10 +77,13 @@ const PostDetail = ({post}) => {
     switch (type) {
       case 'heading-three':
         return <h3 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h3>;
+      
       case 'paragraph':
-        return <p key={index} className="mb-8">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</p>;
+            return <p key={index} className="mb-8">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</p>;      
+
       case 'heading-four':
         return <h4 key={index} className="text-md font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h4>;
+      
       case 'image':
         return (
           <img
@@ -67,19 +95,19 @@ const PostDetail = ({post}) => {
           />
         );
 
-        case 'code-block': // Ajouter un cas pour le bloc de code
+      case 'code-block': // Ajouter un cas pour le bloc de code
         return  ( <div className="bg-gray-300 p-4 rounded-md">
           <pre><code key={index}>{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</code></pre>
           </div>);
-
-        case 'link':
-        return (<a key={index} href={obj.data.uri}>
-          {modifiedText}
-          </a>);
-
+          
+      case 'link':
+        return (<a key={index} href={obj.href} className='text-md text-blue-700'>
+                {obj.text}
+              </a>
+            );
 
   
-        case 'ordered-list-item':
+      case 'ordered-list-item':
         return (<li key={index} className="list-decimal ml-8">
                 {modifiedText.map((item, i) => (<React.Fragment key={i}>{item}</React.Fragment>))}
                 </li>

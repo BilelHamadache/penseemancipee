@@ -51,7 +51,8 @@ useEffect(() => {
 
         {/*div pour liste vertivale des PostCards*/}
         <div className='lg:col-span-8 col-span-1'>
-          {postsdata.map((post) => <PostCard post={post.node} key={post.node.lien}/> )}
+          {postsdata.filter((post) => post.node.indexed === true).map((post) => <PostCard post={post.node} key={post.node.lien}/> )}
+
         </div>
 
         {/*div pour la liste verticale ( à droite) + PostWidget et Catégories (à droite) */}
