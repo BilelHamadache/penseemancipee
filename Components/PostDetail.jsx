@@ -11,6 +11,8 @@ import { SendUpdatedPostViews, getVues } from '../services'; // Pour modifier le
 import { useRouter } from 'next/router';
 
 
+import { Tooltip } from 'react-tippy';
+import 'react-tippy/dist/tippy.css';
 
 
 const PostDetail = ({post}) => {
@@ -203,11 +205,11 @@ const PostDetail = ({post}) => {
             <span className="align-middle">
               {moment(post.createdAt).format('DD MMM YYYY')}
             </span>
-            <span className="ml-4 text-gray-800">
-              <FaEye className="inline mr-2" 
-              title={`Dernière visualisation : ${moment(post.updatedAt).format('DD MMM YYYY, HH:mm')}`}
-              data-tooltip/>
-               {updatedviews} Vues
+            <span className="ml-2 text-gray-800">
+            <Tooltip title={`Dernière visualisation : ${moment(post.updatedAt).format('DD MMM YYYY, HH:mm')}`}>
+              <FaEye className="inline mr-2"/>
+               {post.vues} Vues
+            </Tooltip>
            </span>
         </div>
         </div>

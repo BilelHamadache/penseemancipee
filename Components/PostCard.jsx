@@ -9,6 +9,10 @@ import {getVues } from '../services'; // Pour afficher le nbr de vues modfiés
 import { FaEye, GrView } from 'react-icons/fa';
 import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from 'next/dist/shared/lib/constants';
 
+import { Tooltip } from 'react-tippy';
+import 'react-tippy/dist/tippy.css';
+
+
 //const post =[];
 // post= post.node
 const PostCard = ({post}) => {
@@ -35,7 +39,7 @@ const PostCard = ({post}) => {
   
   fetchVues();
   */
-  
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md pb-80 mb-6">
@@ -74,10 +78,10 @@ const PostCard = ({post}) => {
             </span>
 
             <span className="ml-2 text-gray-800">
-              <FaEye className="inline mr-2"
-              title={`Dernière visualisation : ${moment(post.updatedAt).format('DD MMM YYYY, HH:mm')}`}
-              data-tooltip/>
+            <Tooltip title={`Dernière visualisation : ${moment(post.updatedAt).format('DD MMM YYYY, HH:mm')}`}>
+              <FaEye className="inline mr-2"/>
                {post.vues} Vues
+            </Tooltip>
            </span>
             
         </div>
