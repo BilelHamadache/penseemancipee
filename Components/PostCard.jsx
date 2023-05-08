@@ -74,7 +74,9 @@ const PostCard = ({post}) => {
             </span>
 
             <span className="ml-2 text-gray-800">
-              <FaEye className="inline mr-2" />
+              <FaEye className="inline mr-2"
+              title={`Dernière visualisation : ${moment(post.updatedAt).format('DD MMM YYYY, HH:mm')}`}
+              data-tooltip/>
                {post.vues} Vues
            </span>
             

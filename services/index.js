@@ -23,6 +23,7 @@ export const getPosts = async () =>
                 }
               }
               createdAt
+              updatedAt
               vues
               lien
               titre
@@ -93,6 +94,7 @@ export const getPostsFromCategory = async (lien) => {
               }
             }
             createdAt
+            updatedAt
             vues
             lien
             titre
@@ -130,6 +132,7 @@ export const getPostDetails = async (lien) =>{
                 }
               }
               createdAt
+              updatedAt
               vues
               lien
               titre

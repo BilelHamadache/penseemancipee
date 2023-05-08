@@ -204,7 +204,9 @@ const PostDetail = ({post}) => {
               {moment(post.createdAt).format('DD MMM YYYY')}
             </span>
             <span className="ml-4 text-gray-800">
-              <FaEye className="inline mr-2" />
+              <FaEye className="inline mr-2" 
+              title={`Dernière visualisation : ${moment(post.updatedAt).format('DD MMM YYYY, HH:mm')}`}
+              data-tooltip/>
                {updatedviews} Vues
            </span>
         </div>
