@@ -114,7 +114,7 @@ const PostDetail = ({post}) => {
                 {modifiedText.map((item, i) => (<React.Fragment key={i}>{item}</React.Fragment>))}
                 </li>
               );
-        
+/*        
         case 'video':
         return (
           <div key={index} className="my-4">
@@ -126,10 +126,56 @@ const PostDetail = ({post}) => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              sandbox="allow-same-origin allow-scripts"
             ></iframe>
           </div>
         );
+*/
+      case 'video':
+        return (
+    <div key={index} className="my-4">
+      <video
+        controls
+        width="560"
+        height="315"
+        src={obj.src}
+        title={obj.title}
+        controlsList="nodownload"
+      ></video>
+    </div>
+  );
+  
+  //console.log(obj.children[0].children[0].children[0])
+  case 'table':
+  return (
+    <div key={index} className="table-responsive">
+      <table className="table">
+        <tbody>
+          {obj.children[0].children.map((table_row, i) => (
+            <tr key={i}>
+              {table_row.children.map((table_cell, j) => (
+                <td key={j}>
+                  {table_cell.children[0].children[0].text}              
+</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <style>
+        {`
+          table {
+            border-collapse: collapse;
+          }
 
+          td, th {
+            border: 1px solid black;
+            padding: 8px;
+          }
+        `}
+      </style>
+    </div>
+  );
         default:
         return modifiedText;
     }
