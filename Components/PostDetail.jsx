@@ -14,6 +14,10 @@ import { useRouter } from 'next/router';
 import { Tooltip } from 'react-tippy';
 import 'react-tippy/dist/tippy.css';
 
+//import { renderRichText, RenderTable } from '@graphcms/rich-text-react-renderer';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+
+
 
 const PostDetail = ({post}) => {
 
@@ -144,6 +148,15 @@ const PostDetail = ({post}) => {
       ></video>
     </div>
   );
+/*
+  case 'table':
+    return (
+      <div key={index}>
+      {renderRichText(obj.children[0])}
+    </div>
+    );
+*/
+
   
   //console.log(obj.children[0].children[0].children[0])
   case 'table':
@@ -151,13 +164,15 @@ const PostDetail = ({post}) => {
     <div key={index} className="table-responsive">
       <table className="table">
         <tbody>
-          {obj.children[0].children.map((table_row, i) => (
+          {console.log(obj.children)}
+          {obj.children[0].children.map((row, i) => (
             <tr key={i}>
-              {table_row.children.map((table_cell, j) => (
+              {row.children.map((cell, j) => (
                 <td key={j}>
-                  {table_cell.children[0].children[0].text}              
-</td>
-              ))}
+                {getTableCellValue(cell)}
+                </td>
+                
+              ))} 
             </tr>
           ))}
         </tbody>
@@ -176,10 +191,57 @@ const PostDetail = ({post}) => {
       </style>
     </div>
   );
+  
+
         default:
         return modifiedText;
     }
   };//Fin de la fonction
+
+  //Pour acceder aux tableaux
+  /*
+const renderRichText = (richTextData) => {
+  return documentToReactComponents(richTextData, {
+    renderNode: {
+      'embedded-entry-block': (node) => {
+        if (node.data.target.sys.contentType.sys.id === 'table') {
+          const { rows } = node.data.target.fields;
+          //console.log(rows);
+          return (
+            <table>
+              <tbody>
+                {rows.map((row, i) => (
+                  <tr key={i}>
+                    {row.fields.cells.map((cell, j) => (
+                      <td key={j}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          );
+        }
+      },
+    },
+  });
+};
+*/
+  
+  const getTableCellValue = (cell) => {
+    if (cell.children) {
+      return cell.children.map((node, index) => {
+        if (node.text) {
+          return <p key={index}>{node.text}</p>;
+        } else if (node.children) {
+          return getTableCellValue(node);
+        } else {
+          return null;
+        }
+      });
+    } else {
+      return null;
+    }
+  };
 
 
   //  le hook useEffect  pour appeler la fonction updatePostViews lorsque le composant PostDetail est monté
