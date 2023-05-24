@@ -167,8 +167,9 @@ export const getRecentPost = async () =>
   query getPostDetails() 
   {
     posts(
-      orderBy:createdAt_ASC
-      last:3
+      where: { indexed: true }
+      orderBy:createdAt_DESC
+      first:3
     ) {
       titre
       image{url}
@@ -191,7 +192,8 @@ export const getSimilarPosts = async (categories, lien) =>
   query getPostDetails($lien: String!, $categories: [String!]) {
     posts(
       where: {lien_not: $lien, AND: {categories_some: {lien_in: $categories}}}
-      last: 3
+      orderBy:createdAt_DESC
+      first:3
     ){
       titre
       image{url}
